@@ -1,0 +1,49 @@
+name: Publish Weekly TIANTECH Guide
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "queue/current.json"
+  workflow_dispatch:
+
+concurrency:
+  group: tiantech-weekly-guide
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.head_commit.message != 'Initialize weekly content queue' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          jq -e '
+            .status == "READY_FOR_MAKE" and
+            (.topic_id | type == "string" and length > 0) and
+            (.topic | type == "string" and length > 0) and
+            (.personal_linkedin_text | type == "string" and length > 0) and
+            (.company_linkedin_text | type == "string" and length > 0) and
+            (.image_url | type == "string" and length > 0) and
+            (.image_filename | type == "string" and length > 0) and
+            (.image_alt_text | type == "string" and length > 0) and
+            (.publish_personal == true or .publish_company == true)
+          ' queue/current.json >/dev/null
+
+      - name: Send payload to Make
+        env:
+          MAKE_WEBHOOK_URL: ${{ secrets.MAKE_WEBHOOK_URL }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$MAKE_WEBHOOK_URL"
+          curl --fail-with-body --silent --show-error             --retry 3             --retry-all-errors             --connect-timeout 15             --max-time 90             -X POST             -H "Content-Type: application/json"             -H "User-Agent: tiantech-content-agent/1.0"             --data-binary @queue/current.json             "$MAKE_WEBHOOK_URL"
