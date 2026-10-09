@@ -33,35 +33,11 @@ jobs:
             (.topic | type == "string" and length > 0) and
             (.personal_linkedin_text | type == "string" and length > 0) and
             (.company_linkedin_text | type == "string" and length > 0) and
-            (.image_svg | type == "string" and length > 0) and
+            (.image_url | type == "string" and test("^https://")) and
             (.image_filename | type == "string" and length > 0) and
             (.image_alt_text | type == "string" and length > 0) and
             (.publish_personal == true or .publish_company == true)
           ' queue/current.json >/dev/null
-
-      - name: Install SVG renderer
-        shell: bash
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y librsvg2-bin
-
-      - name: Render agent visual
-        shell: bash
-        run: |
-          set -euo pipefail
-          jq -r '.image_svg' queue/current.json > /tmp/tiantech-visual.svg
-          rsvg-convert             -w 1200             -h 627             -f png             -o /tmp/tiantech-visual.png             /tmp/tiantech-visual.svg
-          test -s /tmp/tiantech-visual.png
-
-      - name: Build Make payload
-        shell: bash
-        run: |
-          set -euo pipefail
-          IMAGE_BASE64="$(base64 -w 0 /tmp/tiantech-visual.png)"
-          jq             --arg image_base64 "$IMAGE_BASE64"             '. + {
-              image_base64: $image_base64,
-              image_mime_type: "image/png"
-            } | del(.image_svg)'             queue/current.json > /tmp/make-payload.json
 
       - name: Send payload to Make
         env:
@@ -70,4 +46,4 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$MAKE_WEBHOOK_URL"
-          curl --fail-with-body --silent --show-error             --retry 3             --retry-all-errors             --connect-timeout 15             --max-time 90             -X POST             -H "Content-Type: application/json"             -H "User-Agent: tiantech-content-agent/1.0"             --data-binary @/tmp/make-payload.json             "$MAKE_WEBHOOK_URL"
+          curl --fail-with-body --silent --show-error             --retry 3             --retry-all-errors             --connect-timeout 15             --max-time 90             -X POST             -H "Content-Type: application/json"             -H "User-Agent: tiantech-content-agent/1.0"             --data-binary @queue/current.json             "$MAKE_WEBHOOK_URL"
