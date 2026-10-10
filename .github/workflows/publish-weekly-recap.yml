@@ -1,0 +1,49 @@
+name: Publish Weekly TIANTECH Recap
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "queue/weekly-recap.json"
+  workflow_dispatch:
+
+concurrency:
+  group: tiantech-weekly-recap
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          jq -e '
+            .status == "READY_FOR_MAKE" and
+            (.week_id | type == "string" and test("^[0-9]{4}-W[0-9]{2}$")) and
+            (.title | type == "string" and length > 0) and
+            (.development_1.title | type == "string" and length > 0) and
+            (.development_1.source_url | type == "string" and test("^https://")) and
+            (.development_2.title | type == "string" and length > 0) and
+            (.development_2.source_url | type == "string" and test("^https://")) and
+            (.development_3.title | type == "string" and length > 0) and
+            (.development_3.source_url | type == "string" and test("^https://")) and
+            (.weekly_signal | type == "string" and length > 0) and
+            (.company_linkedin_text | type == "string" and length > 0 and length <= 2000) and
+            (.publish_company == true) and
+            (.agent == "TIANTECH Weekly Intelligence Agent")
+          ' queue/weekly-recap.json >/dev/null
+
+      - name: Send payload to Make
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail-with-body --silent --show-error             --retry 3             --retry-all-errors             --connect-timeout 15             --max-time 90             -X POST             -H "Content-Type: application/json"             -H "User-Agent: tiantech-weekly-intelligence-agent/1.0"             --data-binary @queue/weekly-recap.json             "https://hook.eu2.make.com/qe6ooprclp4qyei6kvt3ztrk3d532p5h"
