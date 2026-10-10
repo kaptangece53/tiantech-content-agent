@@ -38,6 +38,9 @@ jobs:
             (.development_3.source_url | type == "string" and test("^https://")) and
             (.weekly_signal | type == "string" and length > 0) and
             (.company_linkedin_text | type == "string" and length > 0 and length <= 2000) and
+            (.image_url | type == "string" and test("^https://")) and
+            (.image_filename | type == "string" and length > 0) and
+            (.image_alt_text | type == "string" and length > 0) and
             (.publish_company == true) and
             (.agent == "TIANTECH Weekly Intelligence Agent")
           ' queue/weekly-recap.json >/dev/null
