@@ -1,0 +1,51 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "week_id": "2026-W42",
+  "title": "Haftanın 3 Önemli Gelişmesi",
+  "development_1": {
+    "title": "Microsoft Ekim yamaları: Aktif istismar edilen Windows Shell açığı",
+    "published_at": "2026-10-13",
+    "what_happened": "Microsoft, CVE-2026-96951 Windows Shell güvenlik özelliği atlatma açığını 13 Ekim güncellemelerinde giderdi; aktif istismar doğrulandı.",
+    "why_it_matters": "Mark of the Web güven sınırının aşılabilmesi, güvenilmeyen dosya işleme kontrollerinin tek başına yeterli olmadığını gösteriyor.",
+    "business_impact": "Uç noktalarda risk bazlı acil yama önceliklendirmesi, şüpheli dosya etkinliği incelemesi ve savunma katmanlarının doğrulanması gerekir.",
+    "recommended_attention": "Etkilenen varlıkları tespit et; Ekim güvenlik güncellemelerini önceliklendir; ilgili telemetriyi incele.",
+    "source_name": "Microsoft Security Response Center",
+    "source_url": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-96951",
+    "importance_score": 96,
+    "selection_reason": "Aktif istismar edilen ve geniş kurumsal Windows ortamlarına etki eden yeni güvenlik açığı."
+  },
+  "development_2": {
+    "title": "FSB, finans kuruluşlarında sorumlu AI kullanımı için 12 uygulamayı kesinleştirdi",
+    "published_at": "2026-10-15",
+    "what_happened": "Financial Stability Board, AI yönetişimi ve yaşam döngüsü risk kontrollerine ilişkin 12 iyi uygulamayı içeren nihai raporunu yayımladı.",
+    "why_it_matters": "AI risklerinin yönetim kurulu sorumluluğu, veri yönetişimi, insan gözetimi, siber riskler ve üçüncü taraf bağımlılıklarıyla ele alınması gerektiğini ortaya koyuyor.",
+    "business_impact": "Finans kuruluşları AI kullanım envanteri, kontrol sahipliği, model değerlendirme ve üçüncü taraf risk süreçlerini gözden geçirebilir.",
+    "recommended_attention": "AI kullanım senaryolarını risk bazlı envantere al; sahiplik, veri erişimi, insan onayı ve izlenebilirliği doğrula.",
+    "source_name": "Financial Stability Board",
+    "source_url": "https://www.fsb.org/2026/10/fsb-finalises-sound-practices-for-the-responsible-adoption-of-artificial-intelligence-ai/",
+    "importance_score": 92,
+    "selection_reason": "Birincil standart belirleyici kurumun 15 Ekim'de yayımladığı somut yönetişim çerçevesi."
+  },
+  "development_3": {
+    "title": "Avrupa market zincirlerinde soğutma sistemlerine siber saldırı",
+    "published_at": "2026-10-14",
+    "what_happened": "AP'nin 14 Ekim tarihli haberine göre Fransa'da yüzlerce marketin soğutma sistemleri siber saldırılardan etkilendi; bazı ürünler kullanılamaz hale geldi.",
+    "why_it_matters": "Eski ve internete açık OT uzaktan yönetim bileşenlerinin doğrudan fiziksel operasyon ve tedarik zinciri etkisi oluşturabildiğini gösteriyor.",
+    "business_impact": "Soğuk zincir ve kritik tesislerde iş sürekliliği, OT envanteri, ağ segmentasyonu, güvenli uzaktan erişim ve olay müdahale planları yeniden değerlendirilmeli.",
+    "recommended_attention": "İnternete açık OT yönetim sistemlerini belirle; destek dışı bileşenleri önceliklendir; güvenli erişim ve izolasyon kontrollerini doğrula.",
+    "source_name": "Associated Press",
+    "source_url": "https://apnews.com/article/france-cyberattack-supermarkets-refrigeration-systems-78a813a8efd466b360655339f96083dc",
+    "importance_score": 94,
+    "selection_reason": "Siber güvenlik ihlalinin fiziksel operasyon, stok kaybı ve hizmet sürekliliğine doğrudan yansıdığı geniş ölçekli vaka."
+  },
+  "weekly_signal": "Güncel riskler üç farklı katmanda birleşiyor: uç noktada etkin yama, AI kullanımında denetlenebilir yönetişim ve OT ortamında gerçek operasyonel dayanıklılık.",
+  "human_comment": "Benim için bu üç gelişmenin ortak noktası, güvenliğin artık tek bir ekip ya da ürünle yönetilemeyecek kadar operasyonun içine girmiş olması. Yama yönetimi, AI yetkileri ve saha sistemleri ayrı başlıklar gibi görünse de aynı soruya çıkıyor: Bir kontrolün gerçekten çalıştığını nasıl kanıtlıyoruz? Bence kurumların en çok burada disipline ihtiyacı var.",
+  "company_linkedin_text": "Haftanın 3 Önemli Gelişmesi | 10–16 Ekim 2026\n\n1 — Windows'ta aktif istismar edilen güvenlik açığı\n13 Ekim güvenlik güncellemelerinde, Windows Shell'in Mark of the Web korumasını aşabilen CVE-2026-96951 için düzeltme yayımlandı. Bu olay, güvenilmeyen dosyaların açılmasında tek bir koruma katmanına bel bağlamanın riskini gösteriyor. Kurumlar için öncelik: etkilenen uç noktaları tespit etmek, güncellemeyi risk bazlı hızlandırmak ve şüpheli dosya yürütme izlerini incelemek.\n\n2 — Finans sektöründe AI yönetişimi somutlaşıyor\nFinancial Stability Board, 15 Ekim'de sorumlu yapay zekâ kullanımı için 12 iyi uygulamayı kesinleştirdi. Yönetim sorumluluğu, veri yönetişimi, insan gözetimi, üçüncü taraf bağımlılıkları ve yaşam döngüsü boyunca risk takibi öne çıkıyor. Mesaj açık: AI kullanımı yalnızca model seçimi değil, ölçülebilir kontrol ve hesap verebilirlik konusu.\n\n3 — Siber saldırı fiziksel operasyonu vurdu\nAvrupa'da market zincirlerinin soğutma sistemlerini hedef alan saldırılar, Fransa'da yüzlerce mağazayı etkiledi. Olay, internete açık eski OT/uzaktan yönetim bileşenlerinin yalnızca BT güvenliği değil, ürün kaybı ve hizmet sürekliliği riski de yarattığını hatırlatıyor. Envanter, ağ ayrıştırma, uzaktan erişim ve olay müdahalesi birlikte ele alınmalı.\n\nBu haftanın ortak sinyali\n\nBenim için bu üç gelişmenin ortak noktası, güvenliğin artık tek bir ekip ya da ürünle yönetilemeyecek kadar operasyonun içine girmiş olması. Yama yönetimi, AI yetkileri ve saha sistemleri ayrı başlıklar gibi görünse de aynı soruya çıkıyor: Bir kontrolün gerçekten çalıştığını nasıl kanıtlıyoruz? Bence kurumların en çok burada disipline ihtiyacı var.\n\n#TIANTECH #TIANTECHINOVASYON #CyberSecurity #AIGovernance",
+  "image_url": "",
+  "image_filename": "TIANTECH-WEEKLY-RECAP-2026-W42.png",
+  "image_alt_text": "Uç nokta güvenliği, yapay zekâ yönetişimi ve perakende soğuk zincir altyapısını bir araya getiren üç bölümlü TIANTECH haftalık teknoloji görseli.",
+  "publish_company": false,
+  "generated_at": "2026-10-16T08:18:38.616Z",
+  "agent": "TIANTECH Weekly Intelligence Agent",
+  "review_reason": "DROPBOX_UPLOAD_BLOCKED: Image generated but connector upload was blocked by OpenAI safety checks; no valid Dropbox image_url. Publication intentionally withheld."
+}
