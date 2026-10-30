@@ -1,0 +1,52 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "week_id": "2026-W44",
+  "title": "Haftanın 3 Önemli Gelişmesi",
+  "development_1": {
+    "title": "PHP2Shell açıklarının CISA KEV listesine eklenmesi",
+    "published_at": "2026-10-27",
+    "what_happened": "CISA 26 Ekim'de CVE-2026-109618 ve CVE-2026-109619'u KEV listesine ekledi; Kanada Siber Güvenlik Merkezi 27 Ekim güncellemesinde sahadaki istismar raporlarını doğruladı.",
+    "why_it_matters": "Kimlik doğrulamasız uzaktan kod çalıştırma, internete açık PHP uygulamalarında acil operasyonel risktir.",
+    "business_impact": "Web sunucularında yetkisiz kod çalıştırma, veri kaybı ve hizmet kesintisi riski.",
+    "recommended_attention": "PHP envanterini çıkarın, desteklenen güvenli sürümlere geçin ve PHP süreçlerinin shell veya araç indirme davranışlarını inceleyin.",
+    "source_name": "Canadian Centre for Cyber Security",
+    "source_url": "https://www.cyber.gc.ca/en/alerts-advisories/al26-026-critical-vulnerabilities-impacting-php-cve-2026-109618-cve-2026-109619",
+    "importance_score": 97,
+    "selection_reason": "Resmî 27 Ekim güncellemesi, iki açığın 26 Ekim KEV kaydını ve istismar raporlarını doğruluyor."
+  },
+  "development_2": {
+    "title": "Oracle Deep Trust AI Architecture: veri kaynağında politika uygulama",
+    "published_at": "2026-10-26",
+    "what_happened": "Oracle, platform, veri, veri erişimi ve uygulama geliştirme katmanlarına güven kontrollerini yerleştiren mimarisini duyurdu.",
+    "why_it_matters": "AI ajanları uygulama katmanını aşarak doğrudan veritabanına sorgu gönderebildiğinden güvenlik kuralları veri katmanında uygulanmalı.",
+    "business_impact": "Hassas veri sızıntısı, yetki ihlali ve iş kuralı atlatma riskleri.",
+    "recommended_attention": "Veritabanında kimlik ve yetki denetimini güçlendirin; ajanlara sınırsız SQL yerine denetimli veri API'leri verin.",
+    "source_name": "Oracle",
+    "source_url": "https://www.oracle.com/tr/news/announcement/ai-world-oracle-announces-deep-trust-ai-architecture-to-help-enterprises-innovate-with-confidence-2026-10-26/",
+    "importance_score": 91,
+    "selection_reason": "Veri güvenliği ve AI yönetişimi için doğrulanmış yeni mimari yaklaşım; satıcı iddiaları bağımsız etkinlik kanıtı değildir."
+  },
+  "development_3": {
+    "title": "SentinelOne Wayfinder: AI bulgularında istismar edilebilirlik doğrulaması",
+    "published_at": "2026-10-29",
+    "what_happened": "SentinelOne, Wayfinder Frontier AI Services hizmetine Anthropic Claude Mythos 5.1'i eklemeyi planladığını açıkladı.",
+    "why_it_matters": "AI ile üretilen büyük bulgu listelerinin işletme riskine göre doğrulanması ve önceliklendirilmesi gerekiyor.",
+    "business_impact": "Gürültülü zafiyet listelerinin maliyeti; kritik saldırı yollarının gözden kaçması.",
+    "recommended_attention": "Zafiyetleri yalnızca önem derecesiyle değil gerçek erişilebilirlik ve doğrulanmış istismar edilebilirlikle önceliklendirin.",
+    "source_name": "SentinelOne",
+    "source_url": "https://www.sentinelone.com/press/sentinelone-to-add-anthropic-s-claude-mythos-5-1-to-wayfinder-frontier-ai-services/",
+    "importance_score": 86,
+    "selection_reason": "29 Ekim tarihli resmi duyuru, AI destekli zafiyet yönetiminde insan doğrulaması ve risk önceliklendirmesi yönünü gösteriyor."
+  },
+  "weekly_signal": "Yama yönetimi, veri katmanı yetkilendirmesi ve AI destekli zafiyet önceliklendirmesinde kontrolün fiilen çalıştığını doğrulamak temel gereksinim.",
+  "human_comment": "Bu üç gelişmede aynı sorunu görüyorum: teknik kontrolün tanımlanması, onun etkili çalıştığını kanıtlamaya yetmiyor. Bir yamanın gerçekten uygulandığını, veri erişim kuralının atlanamadığını ve bir bulgunun gerçekten istismar edilebilir olduğunu ayrı ayrı doğrulamalıyız. Benim için güvenlik olgunluğu artık araç sayısından çok bu doğrulama disiplininde ölçülüyor.",
+  "company_linkedin_text": "TIANTECH | Haftanın 3 Önemli Gelişmesi (23–30 Ekim 2026)\n\nBu hafta yama, veri erişimi ve AI destekli risk doğrulaması öne çıktı.\n\n1. PHP açıkları artık aktif istismar gündeminde\n26 Ekim'de CISA, CVE-2026-109618 ve CVE-2026-109619 açıklarını bilinen istismar edilen zafiyetler listesine ekledi. 27 Ekim tarihli Kanada resmi uyarısı da istismar raporlarını doğruladı. İnternete açık PHP sistemleri için gecikme riski yüksek. Öncelik: sürüm envanteri, güvenlik güncellemesi ve şüpheli süreç davranışlarının incelenmesi.\n\n2. AI için güvenlik kontrolü verinin kaynağına taşınıyor\n26 Ekim'de Oracle, Deep Trust AI Architecture yaklaşımını duyurdu. Amaç; kimlik, veri erişimi ve iş kurallarını yalnızca uygulama katmanına bırakmadan veritabanında ve güvenilir API'lerde uygulamak. Doğrudan SQL kullanan ajanlar uygulama kontrollerini aşabilir. Öncelik: en az yetki, veri katmanında politika ve kontrollü işlem API'leri.\n\n3. Güvenlikte bulgu sayısından istismar edilebilirliğe geçiş\n29 Ekim'de SentinelOne, Wayfinder hizmetine Claude Mythos 5.1 eklemeyi planladığını açıkladı. Yaklaşım, AI ile zafiyet keşfini uzman doğrulaması ve öncelikli iyileştirme önerileriyle birleştiriyor. Bu bir ürün duyurusu; etkinlik kanıtı değil, yaklaşım değişimi. Öncelik: gerçek saldırı yollarına göre doğrulama ve ölçülebilir düzeltme.\n\nBu haftanın ortak sinyali\nBu üç gelişmede aynı sorunu görüyorum: teknik kontrolün tanımlanması, onun etkili çalıştığını kanıtlamaya yetmiyor. Bir yamanın gerçekten uygulandığını, veri erişim kuralının atlanamadığını ve bir bulgunun gerçekten istismar edilebilir olduğunu ayrı ayrı doğrulamalıyız. Benim için güvenlik olgunluğu artık araç sayısından çok bu doğrulama disiplininde ölçülüyor.\n\n#TIANTECH #TIANTECHINOVASYON #CyberSecurity #DataSecurity",
+  "image_dropboxname": "",
+  "image_filename": "TIANTECH-WEEKLY-RECAP-2026-W44.png",
+  "image_url": "",
+  "image_alt_text": "Kurumsal veri merkezi ve siber güvenlik operasyonlarında güvenli altyapı, veri akışı ve analitik gözetim temalı mavi-turuncu geniş görsel.",
+  "publish_company": false,
+  "generated_at": "2026-10-30T08:20:00Z",
+  "agent": "TIANTECH Weekly Intelligence Agent",
+  "review_reason": "BLOCKED_FILE_REFERENCE: Dropbox connector refused both generated conversation image references and local PNG path; upload could not be confirmed. No READY_FOR_MAKE commit or Make delivery."
+}
