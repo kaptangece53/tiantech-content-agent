@@ -33,11 +33,19 @@ jobs:
             (.topic | type == "string" and length > 0) and
             (.personal_linkedin_text | type == "string" and length > 0) and
             (.company_linkedin_text | type == "string" and length > 0) and
-            (.image_dropboxname | type == "string" and test("^/[^/]+[.]png$")) and
+            (.image_github_path | type == "string" and test("^images/TIANTECH-[A-Za-z0-9_-]+[.]png$")) and
             (.image_filename | type == "string" and length > 0) and
             (.image_alt_text | type == "string" and length > 0) and
             (.publish_personal == true or .publish_company == true)
           ' queue/current.json >/dev/null
+
+      - name: Verify image exists in GitHub checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          IMAGE_PATH="$(jq -r .image_github_path queue/current.json)"
+          test -f "$IMAGE_PATH"
+          file "$IMAGE_PATH" | grep -q "PNG image data"
 
       - name: Send payload to Make
         env:
