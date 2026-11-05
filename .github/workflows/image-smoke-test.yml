@@ -1,0 +1,22 @@
+name: TIANTECH GitHub Image Smoke Test
+on:
+  push:
+    branches: [main]
+    paths: [tests/image-smoke-trigger.txt]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  image-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate W44 image and public raw URL
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s images/TIANTECH-BACKUP-RESTORE-READINESS-2026-W44.png
+          file images/TIANTECH-BACKUP-RESTORE-READINESS-2026-W44.png | grep -q 'PNG image data, 1200 x 627'
+          curl --fail --location --retry 3 --silent --show-error --output /tmp/guide.png https://raw.githubusercontent.com/kaptangece53/tiantech-content-agent/main/images/TIANTECH-BACKUP-RESTORE-READINESS-2026-W44.png
+          cmp images/TIANTECH-BACKUP-RESTORE-READINESS-2026-W44.png /tmp/guide.png
+          echo 'GitHub PNG and public HTTP download validated'
