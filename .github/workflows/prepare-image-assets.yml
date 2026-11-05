@@ -1,0 +1,75 @@
+name: Prepare TIANTECH Image for Make
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'images/source/*.svg'
+      - 'images/source/*.png.b64'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tiantech-image-preparation
+  cancel-in-progress: false
+
+jobs:
+  prepare-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Prepare PNG assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet cairosvg pillow
+          python - <<'PY'
+          import base64, io, pathlib
+          from PIL import Image
+          import cairosvg
+          src=pathlib.Path("images/source")
+          out=pathlib.Path("images")
+          out.mkdir(exist_ok=True)
+          if not src.exists():
+              raise SystemExit("No images/source directory")
+          found=0
+          for p in sorted(src.iterdir()):
+              if p.name.endswith(".png.b64"):
+                  data=base64.b64decode(p.read_text().strip(), validate=True)
+                  name=p.name[:-4]
+              elif p.suffix.lower()==".svg":
+                  data=cairosvg.svg2png(bytestring=p.read_bytes(),output_width=1200,output_height=627)
+                  name=p.stem+".png"
+              else:
+                  continue
+              if not name.startswith("TIANTECH-") or "/" in name:
+                  raise SystemExit("Invalid filename: "+name)
+              im=Image.open(io.BytesIO(data))
+              im.load()
+              if im.size!=(1200,627):
+                  raise SystemExit("Expected 1200x627: "+name)
+              target=out/name
+              if target.exists() and target.read_bytes()!=data:
+                  raise SystemExit("Existing image differs: "+name)
+              target.write_bytes(data)
+              found+=1
+          if not found:
+              raise SystemExit("No source assets found")
+          PY
+      - name: Commit generated PNG assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/*.png
+          if git diff --cached --quiet; then
+            echo "No new PNG assets"
+          else
+            git commit -m "Prepare TIANTECH image assets"
+            git push
+          fi
