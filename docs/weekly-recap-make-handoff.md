@@ -1,23 +1,32 @@
-# TIANTECH Weekly Intelligence — Dropbox path handoff
+# TIANTECH Weekly Intelligence — GitHub image handoff
 
-Make scenario: Webhook (119) → Dropbox Download a File (127) → LinkedIn company image post.
+## Architecture
+Agent → GitHub PNG at `images/weekly-recap/<week_id>.png` → GitHub JSON `queue/weekly-recap.json` → weekly GitHub Actions → Make webhook → Make HTTP **Download a file** → LinkedIn company image post.
 
-## Required payload fields
-- `image_dropboxname`: exact absolute Dropbox-root file path, e.g. `/TIANTECH-WEEKLY-RECAP-2026-W42.png`.
-- `image_filename`: basename of `image_dropboxname`.
-- `image_url`: omit or set to empty string; it is not used by this Make scenario.
-- `status`: `READY_FOR_MAKE` only after Dropbox upload and all content checks succeed.
+Dropbox is not used. Do not modify `queue/current.json` or the mini-guide workflow.
 
-## Make configuration
-Dropbox module 127: **Download a File**, **Way of selecting files = Map a file path**, **File Path = 119.image_dropboxname**. LinkedIn image input should map Dropbox module 127's downloaded file data and filename, not a temporary Dropbox URL.
+## Make configuration (manual one-time change)
+1. Replace the Dropbox Download a File module in the **weekly recap** scenario with **HTTP > Download a file**.
+2. Set HTTP URL to webhook field `119.image_url` (not `image_dropboxname`).
+3. Map the downloaded HTTP file binary and `119.image_filename` to the LinkedIn company image-post module.
+4. Re-determine webhook data structure if `image_url` is absent.
+5. Verify one end-to-end run before treating this migration as operational. Do not modify the separate mini-guide scenario.
 
-## Agent publishing gate
-1. Research exactly three distinct, dated and verified developments within the previous seven days.
-2. Validate Turkish post length, four hashtags, practitioner closing paragraph and source URLs.
-3. Generate final PNG and upload it to Dropbox root. On conflict use unique generated_at suffix.
-4. Confirm upload succeeded and exact Dropbox path returned. Set `image_dropboxname` to that path and synchronize `image_filename`.
-5. Read current blob SHA for `queue/weekly-recap.json` and commit complete payload to main with `READY_FOR_MAKE` only if all gates passed. Otherwise keep publication queue unchanged and save a REVIEW_REQUIRED draft.
-6. Never request temporary download URLs, HEAD/fetch them, or call Make directly.
-7. Do not modify `queue/current.json` or the mini-guide workflow.
+## Payload
+- `image_url`: public immutable GitHub raw URL using the actual commit SHA, e.g. `https://raw.githubusercontent.com/kaptangece53/tiantech-content-agent/<40-character-commit-sha>/images/weekly-recap/2026-W45.png`.
+- `image_filename`: exact PNG basename.
+- `image_alt_text`: meaningful description.
+- `image_dropboxname`: omit from new payload; it is deprecated.
+- `status`: `READY_FOR_MAKE` only after image is uploaded and publicly retrievable.
 
-**Note:** Merely changing the scheduled-agent prompt does not change Make's scenario. The webhook module must expose `image_dropboxname` (redetermine data structure if needed), and the Dropbox file module must use that field.
+## Publishing gates
+1. Verify exactly three distinct, dated enterprise-relevant developments from the last 7 days, with valid sources and complete required metadata.
+2. Validate Turkish LinkedIn copy: exactly 3 numbered developments, 1400–1900 characters (max 2000), exactly 4 hashtags including #TIANTECH and #TIANTECHINOVASYON, and an unattributed first-person closing paragraph under 'Bu haftanın ortak sinyali'.
+3. Generate one final 1200×627 PNG using the TIANTECH palette.
+4. Upload actual PNG bytes to `images/weekly-recap/<week_id>.png` via a binary-capable GitHub API (base64 blob/commit workflow or equivalent). Do not use UTF-8 text-file creation for binary PNGs. On conflicts use a unique timestamped filename. Confirm the image exists at its immutable commit SHA and a GET returns image/png.
+5. Read current blob SHA of `queue/weekly-recap.json`; commit full valid JSON with `READY_FOR_MAKE`, `publish_company=true`, matching `image_filename` and `image_url`. If any gate fails, write a REVIEW_REQUIRED draft only, not the publication queue.
+6. Confirm weekly GitHub Actions Validate payload, Verify GitHub image, and Send payload to Make steps succeed. Empty results from commit-workflow-runs lookup do not prove absence of push-triggered runs. Inspect alternative workflow runs/logs and fix failures with bounded retries while avoiding duplicate posts.
+7. Confirm Make receipt and LinkedIn post separately when connector access allows. Never call Make directly.
+
+## Migration note
+The previous `queue/weekly-recap.json` may still contain the W44 Dropbox payload. Do not manually dispatch it until a new GitHub-hosted PNG and corresponding valid JSON are committed. The workflow now intentionally rejects the old Dropbox-only payload.
