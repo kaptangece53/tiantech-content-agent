@@ -38,13 +38,23 @@ jobs:
             (.development_3.source_url | type == "string" and test("^https://")) and
             (.weekly_signal | type == "string" and length > 0) and
             (.company_linkedin_text | type == "string" and length > 0 and length <= 2000) and
-            (.image_dropboxname | type == "string" and startswith("/") and endswith(".png") and (contains("..") | not)) and
-            (.image_filename | type == "string" and length > 0) and
+            (.image_url | type == "string" and test("^https://raw[.]githubusercontent[.]com/kaptangece53/tiantech-content-agent/[0-9a-f]{40}/images/weekly-recap/[A-Za-z0-9._-]+[.]png$")) and
             (.image_filename | type == "string" and length > 0) and
             (.image_alt_text | type == "string" and length > 0) and
             (.publish_company == true) and
             (.agent == "TIANTECH Weekly Intelligence Agent")
           ' queue/weekly-recap.json >/dev/null
+
+      - name: Verify GitHub image
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="$(jq -r '.image_url' queue/weekly-recap.json)"
+          expected="$(jq -r '.image_filename' queue/weekly-recap.json)"
+          test "${url##*/}" = "$expected"
+          curl --fail --location --silent --show-error --retry 3 --connect-timeout 15 --max-time 60 "$url" -o /tmp/weekly-recap.png
+          file --mime-type /tmp/weekly-recap.png | grep -q 'image/png'
+          test "$(wc -c </tmp/weekly-recap.png)" -gt 10000
 
       - name: Send payload to Make
         shell: bash
