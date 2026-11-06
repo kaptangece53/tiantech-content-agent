@@ -1,0 +1,51 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "week_id": "2026-W45",
+  "title": "Haftanın 3 Önemli Gelişmesi",
+  "development_1": {
+    "title": "CrowdStrike Falcon Guardian AI Kill Switch",
+    "published_at": "2026-11-03",
+    "what_happened": "Falcon Guardian için AI Kill Switch ve AI ajanlarının çalışma anında denetlenmesine yönelik yeni kontroller duyuruldu.",
+    "why_it_matters": "Otonom ajanların araç kullanımı ve veri erişimi çalışma anında denetlenmelidir.",
+    "business_impact": "Yetkisiz otomasyon ve hassas veri erişimi riski.",
+    "recommended_attention": "Ajan kimlikleri, izinleri, işlem kayıtları ve acil durdurma mekanizmalarını test edin.",
+    "source_name": "CrowdStrike",
+    "source_url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-delivers-ai-security-and-safety-enterprise/",
+    "importance_score": 92,
+    "selection_reason": "3 Kasım tarihli üretici duyurusu; ajanların çalışma anında kontrolü açısından önemli."
+  },
+  "development_2": {
+    "title": "CrowdStrike Agentic Adversary Emulation",
+    "published_at": "2026-11-04",
+    "what_happened": "SafeMind destekli saldırı yolu emülasyonu ve düzeltme sonrası tekrar test yaklaşımı duyuruldu.",
+    "why_it_matters": "Zafiyet sayısı yerine kritik varlıklara ulaşan saldırı yolları ölçülebilir.",
+    "business_impact": "Düzeltildiği varsayılan saldırı yollarının açık kalması.",
+    "recommended_attention": "Kritik varlıklar için saldırı yolu yeniden testini KPI haline getirin.",
+    "source_name": "CrowdStrike",
+    "source_url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-unveils-agentic-adversary-emulation-falcon-platform",
+    "importance_score": 89,
+    "selection_reason": "4 Kasım tarihli duyuru; risk odaklı doğrulama yaklaşımı."
+  },
+  "development_3": {
+    "title": "Google Cloud Security Summit: agentic era defense",
+    "published_at": "2026-11-04",
+    "what_happened": "Google Cloud, ajan tabanlı yazılım geliştirme ve makine hızında savunma için güvenlik yaklaşımı güncellemelerini açıkladı.",
+    "why_it_matters": "AI ile hızlanan geliştirme ve otomasyon insan inceleme kapasitesini aşabilir.",
+    "business_impact": "Tedarik zinciri riskleri ve geciken tehdit tespiti.",
+    "recommended_attention": "Bağımlılık güvenliği, ajan davranış telemetrisi ve otomatik müdahale sınırlarını bütünleştirin.",
+    "source_name": "Google Cloud",
+    "source_url": "https://cloud.google.com/blog/products/identity-security/helping-you-build-and-defend-at-machine-speed-in-the-agentic-era/",
+    "importance_score": 87,
+    "selection_reason": "4 Kasım tarihli resmî blog; kurumsal güvenlik operasyonları için yeni yönelim."
+  },
+  "weekly_signal": "AI ajanlarının çalışırken kontrolü, saldırı yollarının yeniden doğrulanması ve makine hızında güvenlik operasyonları.",
+  "human_comment": "Benim için asıl soru, AI'ın kaç işi hızlandırdığı değil; yanlış bir kararı ne kadar hızlı fark edip durdurabildiğimiz. Saldırı yolu kapanışını yeniden test etmeden tamamlandı saymıyorum. Ajanlara verilen yetkiyi de sürekli gözden geçirilmesi gereken bir güvenlik sınırı olarak görüyorum.",
+  "company_linkedin_text": "TIANTECH | Haftanın 3 Önemli Gelişmesi (30 Ekim–6 Kasım 2026)\n\nBu hafta güvenlik gündeminde ortak başlık, yapay zekâ hızına karşı denetlenebilir savunma kurmak.\n\n1. AI ajanlarına çalışma anında müdahale\n3 Kasım'da CrowdStrike, Falcon Guardian için AI Kill Switch ve ajan davranışlarını uç nokta ile ağ katmanında denetleyen yeni kontroller duyurdu. Duyuru, kurumsal ajanların yalnızca geliştirme aşamasında değil çalışırken de durdurulabilir olması gerektiğini gösteriyor. Öncelik: ajan kimlikleri, araç izinleri, işlem kayıtları ve acil durdurma prosedürlerini test etmek.\n\n2. Saldırı yollarını gerçekten kapatmak\n4 Kasım'da CrowdStrike, SafeMind destekli Agentic Adversary Emulation yaklaşımını tanıttı. Sistem, zafiyetleri tek tek sıralamak yerine kritik varlıklara uzanan saldırı zincirlerini canlandırmayı ve düzeltme sonrasında yeniden test etmeyi hedefliyor. Bu bir ürün duyurusu; bağımsız başarı kanıtı değil. Öncelik: kritik saldırı yolları için doğrulanmış kapatma metriği oluşturmak.\n\n3. Güvenlik operasyonlarında makine hızı\n4 Kasım'da Google Cloud, Security Summit kapsamında ajan tabanlı geliştirme ve savunmaya ilişkin güncellemelerini paylaştı. Hızlanan kod üretimi, bağımlılık değişiklikleri ve otomatik işlemler geleneksel insan incelemesinin kapasitesini zorlayabiliyor. Öncelik: yazılım tedarik zinciri kontrollerini, davranış telemetrisini ve otomatik müdahale sınırlarını birlikte tasarlamak.\n\nBu haftanın ortak sinyali\nBenim için asıl soru, AI'ın kaç işi hızlandırdığı değil; yanlış bir kararı ne kadar hızlı fark edip durdurabildiğimiz. Saldırı yolu kapanışını yeniden test etmeden tamamlandı saymıyorum. Ajanlara verilen yetkiyi de sürekli gözden geçirilmesi gereken bir güvenlik sınırı olarak görüyorum.\n\n#TIANTECH #TIANTECHINOVASYON #CyberSecurity #AISecurity",
+  "image_filename": "TIANTECH-WEEKLY-RECAP-2026-W45.png",
+  "image_url": "",
+  "image_alt_text": "Üç korumalı veri platformunu birbirine bağlayan mavi-turuncu siber güvenlik ve yapay zekâ altyapısı görseli.",
+  "publish_company": false,
+  "generated_at": "2026-11-06T08:21:59Z",
+  "agent": "TIANTECH Weekly Intelligence Agent",
+  "review_reason": "Final PNG generated locally but cannot transfer binary file bytes from container into GitHub connector; immutable public GitHub image URL cannot be verified. Do not trigger queue or Make."
+}
